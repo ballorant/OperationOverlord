@@ -43,6 +43,7 @@ class Character:
         char_stats = Char_stats(name)
         char_stats.init_char_stat()
         self.name = name
+        self.char_stats = char_stats
 
     def __str__(self):
         out = "Character {} :\n".format(self.name)
