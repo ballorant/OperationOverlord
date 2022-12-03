@@ -57,7 +57,7 @@ class CharStats:
         if target_stat not in self.value.keys():
             raise ValueError
         else:
-            self.value[target_stat] = self.add_mod[target_stat] * self.mul_mod[target_stat]
+            self.value[target_stat] = int(round(self.add_mod[target_stat] * self.mul_mod[target_stat]))
 
     def add_add_mod(self, target_stat, mod):
         if target_stat not in self.value.keys():
