@@ -63,7 +63,7 @@ class Requirements:
         self.conditions = conditions
 
     def is_valid(self, character):
-        return self.conditions[0]
+        return self.conditions(character)
         # TODO
 
     def string_pas_cher(self):
