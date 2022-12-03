@@ -18,9 +18,9 @@ class Char_stats:
         if self.value.keys():
             raise ValueError
         else :
-            self.new_stat("strength", 2)
-            self.new_stat("intel", 2)
-            self.new_stat("dext", 2)
+            self.new_stat("Strength", 2)
+            self.new_stat("Intel", 2)
+            self.new_stat("Dext", 2)
     def update(self, target_stat):
         if target_stat not in self.value.keys():
             raise ValueError
@@ -52,6 +52,12 @@ class Character:
             out += "{} : {}\n".format(stat, self.char_stats.value[stat])
         return out
 
+
+
+
+class Character_instance:
+    def __init__(self):
+        pass ## TODO
     def x_pos(self):
         return self.position[0]
     def y_pos(self):
