@@ -20,7 +20,7 @@ def test_chara(name):
 
     print(moi)
 
-    excalibur = OneHandSword("Excalibourré", 10)
+    excalibur = OneHandSword("Excalibourré", lambda x : 100, lambda x: True)
 
     print(excalibur.pretty_string())
 

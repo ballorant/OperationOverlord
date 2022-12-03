@@ -1,11 +1,17 @@
 class Item:
     """
+    Classe qui regroupe l'ensemble des items du jeu, les attributs d'un item sont:
 
+    - Son état d'identification: bool
+    - Ses requirements : Requirements issues d'une fonction booléenne
+    - Sa durabilité : entre 0 et 100
+    - Sa rareté
+    - Son nom
     """
 
-    def __init__(self, name):
+    def __init__(self, name, requirements=lambda x: True):
         self.identified = False
-        self.requirements = Requirements()
+        self.requirements = Requirements(requirements)
         self.durability = 100
         self.rarity = "Unknown"
         self.name = name
@@ -25,8 +31,8 @@ class Item:
 
 class Weapon(Item):
 
-    def __init__(self, name, damage):
-        super().__init__(name)
+    def __init__(self, name, damage=lambda x: 1, requirements=lambda x: True):
+        super().__init__(name, requirements)
         self.damage = damage
 
     def pretty_string(self):
@@ -38,20 +44,20 @@ class Weapon(Item):
 
 class OneHandWeapon(Weapon):
 
-    def __init__(self, name, damage):
-        super().__init__(name, damage)
+    def __init__(self, name, damage=lambda x: 1, requirements=lambda x: True):
+        super().__init__(name, damage, requirements)
 
 
 class Sword(Weapon):
 
-    def __init__(self, name, damage):
-        super().__init__(name, damage)
+    def __init__(self, name, damage=lambda x: 1, requirements=lambda x: True):
+        super().__init__(name, damage, requirements)
 
 
 class OneHandSword(OneHandWeapon, Sword):
 
-    def __init__(self, name, damage):
-        super().__init__(name, damage)
+    def __init__(self, name, damage=lambda x: 1, requirements=lambda x: True):
+        super().__init__(name, damage, requirements)
 
     def print_item(self):
         return self.pretty_string()
