@@ -30,6 +30,9 @@ class Item:
 
 
 class Weapon(Item):
+    """
+    Classe qui représente l'ensemble des armes, elle a en attibut une fonction de dégat en plus.
+    """
 
     def __init__(self, name, damage=lambda x: 1, requirements=lambda x: True):
         super().__init__(name, requirements)
