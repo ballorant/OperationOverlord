@@ -1,6 +1,7 @@
 # This is a sample Python script.
 from Character import Character
 from Item import OneHandSword
+from ParserItems import WeaponPool
 
 
 # Press Maj+F10 to execute it or replace it with your code.
@@ -27,6 +28,8 @@ def test_chara(name):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    pool = WeaponPool("BDD.donnees")
+    print(pool.searchitem("d"))
     test_chara("Roosevelt")
 # Nyaa
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
