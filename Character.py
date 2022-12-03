@@ -21,6 +21,18 @@ class Char_stats:
             self.new_stat("Strength", 2)
             self.new_stat("Intel", 2)
             self.new_stat("Dext", 2)
+            self.new_stat("HP", 10)
+            self.new_stat("Mana", 10)
+
+    def incr_hp_from_str(self):
+        if "Strength" not in self.value.keys():
+            raise ValueError
+        else :
+            return 1 + 0.1*self.value["Strength"]
+    def incr_strenght(self, value):
+        curr_incr = self.incr_hp_from_str()
+        self.add_add_mod("Strength", value)
+        self.add_mul_mod("HP", (self.incr_hp_from_str()/curr_incr))
     def update(self, target_stat):
         if target_stat not in self.value.keys():
             raise ValueError
@@ -37,6 +49,7 @@ class Char_stats:
             raise ValueError
         else :
             self.add_mod[target_stat]  = self.add_mod[target_stat]*mod
+
 class Character:
 
     def __init__(self, name):
