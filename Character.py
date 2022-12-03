@@ -1,5 +1,15 @@
 
 class Char_stats:
+    """
+    Classe qui contient toutes les stats d'un perso, hors situation.
+    elle possede 4 attributs :
+    - name : un string avec le nom
+    - value : un dictionnaire avec comme clés les noms des stats, et en valeur leur valeur actuelle en mémoire.
+    - add_mod : un dictionnaire avec comme clés les noms des stats, et en valeur le resultat des modificateurs additifs.
+    - mul_mod : un dictionnaire avec comme clés les noms des stats, et en valeur le resultat des modificateurs multiplicatifs.
+
+
+    """
     def __init__(self, name):
         self.name = name
         self.value = {}
@@ -32,7 +42,9 @@ class Char_stats:
     def incr_strenght(self, value):
         curr_incr = self.incr_hp_from_str()
         self.add_add_mod("Strength", value)
+        self.update("Strength")
         self.add_mul_mod("HP", (self.incr_hp_from_str()/curr_incr))
+        self.update("HP")
     def update(self, target_stat):
         if target_stat not in self.value.keys():
             raise ValueError
