@@ -56,8 +56,8 @@ class OneHandSword(OneHandWeapon, Sword):
 
 class Requirements:
 
-    def __init__(self):
-        self.conditions = lambda x: True
+    def __init__(self, conditions=lambda x: True):
+        self.conditions = conditions
 
     def is_valid(self, character):
         return self.conditions[0]
