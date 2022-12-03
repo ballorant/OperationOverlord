@@ -3,6 +3,13 @@ class Item:
     def __init__(self):
         self.identified = False
         self.requirements = Requirements()
+        self.durability = 100
+        self.rarity = "Unknown"
+
+    def use(self, lost):
+        self.durability -= lost
+
+        return self.durability > 0
 
 
 class Weapon(Item):
