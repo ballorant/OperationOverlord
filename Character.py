@@ -18,10 +18,9 @@ class CharStats:
 
     def new_stat(self, stat_name, def_add=0, def_mul=1):
         """
-        :param stat_name:
-        :param def_add:
-        :param def_mul:
-        :return:
+        :param stat_name: Nom de la stat crée
+        :param def_add: Valeur de départ du modificateur additif, default = 0
+        :param def_mul: Valeur de départ du modificateur multiplicatif, default = 1
         """
         if stat_name in self.value.keys():
             raise ValueError
@@ -71,7 +70,7 @@ class CharStats:
         if target_stat not in self.value.keys():
             raise ValueError
         else:
-            self.add_mod[target_stat] = self.add_mod[target_stat] * mod
+            self.mul_mod[target_stat] = self.mul_mod[target_stat] * mod
 
 
 class Character:
