@@ -22,17 +22,31 @@ class Char_stats:
             self.new_stat("intel", 2)
             self.new_stat("dext", 2)
     def update(self, target_stat):
-        if stat not in self.value.keys():
+        if target_stat not in self.value.keys():
             raise ValueError
         else :
             self.value[target_stat] = self.add_mod[target_stat]*self.mul_mod[target_stat]
 
-
+    def add_add_mod(self, target_stat, mod):
+        if target_stat not in self.value.keys():
+            raise ValueError
+        else :
+            self.add_mod[target_stat] += mod
+    def add_mul_mod(self, target_stat, mod):
+        if target_stat not in self.value.keys():
+            raise ValueError
+        else :
+            self.add_mod[target_stat]  = self.add_mod[target_stat]*mod
 class Character:
 
     def __init__(self, name):
         char_stats = Char_stats(name)
+        char_stats.init_char_stat()
+        self.name = name
 
-        self.name = None
     def __str__(self):
-        return str(self.name)
+        out = "Character {} :\n".format(self.name)
+        for stat in self.char_stats.value.keys():
+            out += "{} : {}\n".format(stat, self.char_stats.value[stat])
+
+
