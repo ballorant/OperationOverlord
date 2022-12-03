@@ -44,10 +44,16 @@ class Character:
         char_stats.init_char_stat()
         self.name = name
         self.char_stats = char_stats
+        self.position = (0, 0)
 
     def __str__(self):
         out = "Character {} :\n".format(self.name)
         for stat in self.char_stats.value.keys():
             out += "{} : {}\n".format(stat, self.char_stats.value[stat])
+        return out
 
+    def x_pos(self):
+        return self.position[0]
+    def y_pos(self):
+        return  self.position[1]
 
