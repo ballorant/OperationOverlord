@@ -20,8 +20,11 @@ def test_chara(name):
     print(moi)
     moi.char_stats.new_stat("Charme", 10, 2)
     moi.char_stats.add_add_mod("Charme", -5)
+    moi.char_stats.add_add_mod("Strength", 100)
     moi.char_stats.update("Charme")
+    moi.char_stats.update("Strength")
     print(moi)
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
