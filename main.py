@@ -18,7 +18,7 @@ def test_chara(name):
     moi = Character(name)
 
     print(moi)
-    moi.char_stats.new_stat("Charme", 10, 2)
+    moi.char_stats.new_stat("Charme", 10, 0)
     moi.char_stats.add_add_mod("Charme", -5)
     moi.char_stats.add_add_mod("Strength", 10)
     print(moi.char_stats.mul_mod["HP"])

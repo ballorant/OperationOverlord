@@ -52,6 +52,19 @@ class CharStats:
         self.add_mul_mod("HP", (self.incr_hp_from_str() / curr_incr))
         self.update("HP")
 
+    def incr_mana_from_intel(self):
+        if "Intel" not in self.value.keys():
+            raise ValueError
+        else:
+            return 1 + 0.1*self.value["Intel"]
+
+    def incr_intel(self, value):
+        curr_incr = self.incr_mana_from_intel()
+        self.add_mod["Intel"] += value
+        self.update("Intel")
+        self.add_mul_mod("Mana", (self.incr_hp_from_str() / curr_incr))
+        self.update("Mana")
+
     def update(self, target_stat):
         if target_stat not in self.value.keys():
             raise ValueError
@@ -65,12 +78,14 @@ class CharStats:
             self.incr_strength(mod)
         else:
             self.add_mod[target_stat] += mod
+            self.update(target_stat)
 
     def add_mul_mod(self, target_stat, mod):
         if target_stat not in self.value.keys():
             raise ValueError
         else:
             self.mul_mod[target_stat] = self.mul_mod[target_stat] * mod
+            self.update(target_stat)
 
 
 class Character:
