@@ -120,11 +120,11 @@ class CharStats:
 
 
 class Character:
-"""
-Class contenant les informations d'un character, hors contexte. Elle contient les attributs :
+    """
+    Class contenant les informations d'un character, hors contexte. Elle contient les attributs :
     -   name : nom.
     -   chat_stats : instance de la classe CharStats associée.
-"""
+    """
     def __init__(self, name):
         char_stats = CharStats(name)
         char_stats.init_char_stat()
