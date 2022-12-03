@@ -39,8 +39,6 @@ def test_chara(name):
     moi.char_stats.add_add_mod("Strength", 10)
     print(moi.char_stats.mul_mod["HP"])
     moi.char_stats.add_add_mod("Strength", 10)
-    moi.char_stats.update("Charme")
-    moi.char_stats.update("Strength")
     print(moi.char_stats.mul_mod["HP"])
     print(moi)
 
