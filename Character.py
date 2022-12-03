@@ -57,6 +57,7 @@ class Character:
 
 class Character_instance:
     def __init__(self):
+        self.position = (0, 0)
         pass ## TODO
     def x_pos(self):
         return self.position[0]
