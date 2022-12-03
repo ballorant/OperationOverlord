@@ -48,7 +48,7 @@ class CharStats:
 
     def incr_strength(self, value):
         curr_incr = self.incr_hp_from_str()
-        self.add_add_mod("Strength", value)
+        self.add_mod["Strength"] += value
         self.update("Strength")
         self.add_mul_mod("HP", (self.incr_hp_from_str() / curr_incr))
         self.update("HP")
