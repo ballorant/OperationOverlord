@@ -1,0 +1,2 @@
+["unarmed", lambda x: 1, lambda x: True]
+["shitty sword", lambda x: x.char_stats.value["Strength"], lambda x: bool(x.char_stats.value["Strength"] > 2)]
