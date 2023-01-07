@@ -1,13 +1,11 @@
 class CharStats:
     """
-    Classe qui contient toutes les stats d'un perso, hors situation.
-    elle possede 4 attributs :
-    - name : un string avec le nom
-    - value : un dictionnaire avec comme clés les noms des stats, et en valeur leur valeur actuelle en mémoire.
-    - add_mod : un dictionnaire avec comme clés les noms des stats, et en valeur le
-    resultat des modificateurs additifs.
-    - mul_mod : un dictionnaire avec comme clés les noms des stats, et en valeur le
-    resultat des modificateurs multiplicatifs.
+    Class with all the stats of a character.
+     It currently has 4 attributes:
+    - name : a string with the name.
+    - value : a dictionary with stat_names as keys and current values as values.
+    - add_mod : a dictionary with stat_names as keys and total values of additive modifiers as values.
+    - mul_mod : a dictionary with stat_names as keys and total values of multiplicative modifiers as values.
     """
 
     def __init__(self, name):
@@ -15,12 +13,13 @@ class CharStats:
         self.value = {}
         self.add_mod = {}
         self.mul_mod = {}
+        self.init_char_stat()
 
     def new_stat(self, stat_name, def_add=0, def_mul=1):
         """
-        :param stat_name: Nom de la stat crée
-        :param def_add: Valeur de départ du modificateur additif, default = 0
-        :param def_mul: Valeur de départ du modificateur multiplicatif, default = 1
+        :param stat_name: name of stat
+        :param def_add: starting value of additive modifier, by default = 0
+        :param def_mul: starting value of multiplicative modifier, by default = 1
         """
         if stat_name in self.value.keys():
             raise ValueError
@@ -53,8 +52,8 @@ class CharStats:
 
     def incr_strength(self, value):
         """
-        Augmente la strength, et actualise les HP en fonction.
-        :param value: Valeur d'augmentation de la strength
+        Raise strength and updates life accordingly.
+        :param value: value of the strength raise.
         """
         curr_incr = self.incr_hp_from_str()
         self.add_mod["Strength"] += value
@@ -69,12 +68,12 @@ class CharStats:
         if "Intel" not in self.value.keys():
             raise ValueError
         else:
-            return 1 + 0.1*self.value["Intel"]
+            return 1 + 0.1 * self.value["Intel"]
 
     def incr_intel(self, value):
         """
-        Augmente l'intelligence, et actualise le mana en fonction.
-        :param value: Valeur d'augmentation de l'intelligence
+        Raise intelligence and updates mana accordingly.
+        :param value: value of intelligence raise.
         """
         curr_incr = self.incr_mana_from_intel()
         self.add_mod["Intel"] += value
@@ -84,8 +83,8 @@ class CharStats:
 
     def update(self, target_stat):
         """
-        Met a jour une stat, en reactualisant en fonction des modificateurs.
-        :param target_stat: Stat a reactualiser.
+        Update the real value of a stat according to its current modifiers.
+        :param target_stat: name of stat to update.
         """
         if target_stat not in self.value.keys():
             raise ValueError
@@ -94,9 +93,9 @@ class CharStats:
 
     def add_add_mod(self, target_stat, mod):
         """
-        Ajoute un modificateur additif a une statistique
-        :param target_stat: Statistique recevant le modificateur additif.
-        :param mod: Valeur du nouveau modificateur additif.
+        Add an additive modifier to a stat.
+        :param target_stat: name of the stat to be modified.
+        :param mod: value of the modifier to be added.
         """
         if target_stat not in self.value.keys():
             raise ValueError
@@ -108,9 +107,9 @@ class CharStats:
 
     def add_mul_mod(self, target_stat, mod):
         """
-        Ajoute un modificateur multiplicatif a une statistique
-        :param target_stat: Statistique recevant le modificateur multiplicatif.
-        :param mod: Valeur du nouveau modificateur multiplicatif.
+        Add a multiplicative modifier to a stat.
+        :param target_stat: name of the stat to be modified.
+        :param mod: value of the modifier to be added.
         """
         if target_stat not in self.value.keys():
             raise ValueError
@@ -121,22 +120,28 @@ class CharStats:
 
 class Character:
     """
-    Class contenant les informations d'un character, hors contexte. Elle contient les attributs :
-    -   name : nom.
-    -   chat_stats : instance de la classe CharStats associée.
+    Class with the information related to a character.
+    -   name : character's name.
+    -   chat_stats : character's stats.
     """
+
     def __init__(self, name):
-        char_stats = CharStats(name)
-        char_stats.init_char_stat()
         self.name = name
-        self.char_stats = char_stats
+        self.char_stats = CharStats(name)
         self.position = (0, 0)
+        self.equipment = Equipment(self)
 
     def __str__(self):
+        """
+        String of character for debug purpose.
+        :return: A string
+        """
         out = "Character {} :\n".format(self.name)
         for stat in self.char_stats.value.keys():
             out += "{} : {}\n".format(stat, self.char_stats.value[stat])
         return out
+
+
 
 
 class CharacterInstance:
