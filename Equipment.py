@@ -5,6 +5,8 @@ class Equipment:
 
     def __init__(self, character):
         self.character = character
+        self.boots = Boots()
+        self.rightHand = RightHand()
 
 
 class ItemSlot:
