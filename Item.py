@@ -1,12 +1,12 @@
 class Item:
     """
-    Classe qui regroupe l'ensemble des items du jeu, les attributs d'un item sont:
+    Class that cover the generic type of all items in the game:
 
-    - Son état d'identification: bool
-    - Ses requirements : Requirements issues d'une fonction booléenne
-    - Sa durabilité : entre 0 et 100
-    - Sa rareté
-    - Son nom
+    - Whether its identified or not: bool
+    - Requirements : Requirements as a boolean function.
+    - Durability : between 0 and 100
+    - Rarity
+    - Name
     """
 
     def __init__(self, name, requirements=lambda x: True):
@@ -31,7 +31,7 @@ class Item:
 
 class Weapon(Item):
     """
-    Classe qui représente l'ensemble des armes, elle a en attibut une fonction de dégat en plus.
+    Class covering the weapon. Inherits from Item with an extra attribute for damage.
     """
 
     def __init__(self, name, damage=lambda x: 1, requirements=lambda x: True):
