@@ -15,6 +15,27 @@ class Pool:
             out += "\n"
         return out
 
+    """
+    Next functions are design to handle the content of the pool, merging two item pool, adding and removing items
+    on a one to one basis.
+    """
+    def merge(self, other_pool):
+        """
+        Creation and gestion of mixed type item pools is handled by merging datasets.
+        """
+        merged_pool = Pool(self.pool + other_pool.pool)
+        return merged_pool
+
+    def add(self, item):
+        self.pool.append(item)
+
+    def remove(self, item_to_rem, purge=0):
+        if purge:
+            self.pool = [item for item in self.pool if item_to_rem.name == item.name]
+        else:
+            self.pool.remove(item_to_rem)
+
+
     @staticmethod
     def parse(directory):
         out = []
